@@ -1,0 +1,42 @@
+<hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config
+    http://www.hazelcast.com/schema/config/hazelcast-config-3.0.xsd"
+    xmlns="http://www.hazelcast.com/schema/config"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <group>
+        <name>bandwich-test</name>
+        <password>pass</password>
+    </group>
+    <!--<properties>-->
+        <!--<property name="hazelcast.logging.type">console</property>-->
+    <!--</properties>-->
+    <network>
+        <port auto-increment="true">5703</port>
+        <outbound-ports>
+            <!--
+            Allowed port range when connecting to other nodes.
+            0 or * means use system provided port.
+            -->
+            <ports>0</ports>
+        </outbound-ports>
+        <join>
+            <multicast enabled="false">
+                <multicast-group>224.3.3.59</multicast-group>
+                <multicast-port>5704</multicast-port>
+            </multicast>
+            <tcp-ip enabled="true">
+                <!--<member>10.3.13.43:5703</member>-->
+                <member>10.3.13.133:5703</member>
+                <member>10.3.13.22:5703</member>
+                <!--<member>lire-fe01.dev.ewr1.nytimes.com:5701</member>-->
+                <!--<member>lire-fe02.dev.ewr1.nytimes.com:5701</member>-->
+            </tcp-ip>
+        </join>
+    </network>
+    <map name="keys">
+        <time-to-live-seconds>18000</time-to-live-seconds>
+        <backup-count>1</backup-count>
+         <near-cache>
+         </near-cache>
+    </map>
+
+</hazelcast>
